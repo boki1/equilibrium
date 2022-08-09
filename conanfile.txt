@@ -1,0 +1,7 @@
+[requires]
+fmt/9.0.0
+gtest/cci.20210126
+ms-gsl/4.0.0
+
+[generators]
+cmake

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Prerequisites
 *.d
 
@@ -30,3 +31,25 @@
 *.exe
 *.out
 *.app
+
+# Custom
+build/out
+.idea
+build/.cmake/
+build/.ninja_deps
+build/.ninja_log
+build/CMakeCache.txt
+build/CMakeFiles/
+build/CTestTestfile.cmake
+build/Testing/
+build/bin/
+build/build.ninja
+build/cmake_install.cmake
+build/compile_commands.json
+build/conan.lock
+build/conanbuildinfo.cmake
+build/conanbuildinfo.txt
+build/conaninfo.txt
+build/graph_info.json
+build/lib/
+build/test_*.cmake

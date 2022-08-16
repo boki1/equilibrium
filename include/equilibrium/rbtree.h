@@ -19,7 +19,8 @@ struct rbtree_node {
 	void *_data_ptr;
 };
 
-typedef int (*rbtree_node_compare)(struct rbtree_node *, struct rbtree_node *);
+typedef int (*rbtree_comparator)(struct rbtree *, struct rbtree_node *,
+								 void *data);
 
 struct rbtree {
 	struct rbtree_node *_root;
@@ -27,6 +28,7 @@ struct rbtree {
 	struct rbtree_node *_biggest;
 	size_t _size;
 	size_t _depth;
+	rbtree_comparator _compare_data_cb;
 };
 
 struct rbtree_iterator {
@@ -40,12 +42,13 @@ int rbtree_destroy(struct rbtree *);
 int rbtree_copy(struct rbtree *);
 
 // Mutable data operations
-int rbtree_insert(struct rbtree *);
+int rbtree_insert(struct rbtree *, void *);
 int rbtree_remove(struct rbtree *);
 
 // Immutable data operations
-int rbtree_find(struct rbtree *, rbtree_node_compare cb);
-struct rbtree_iterator rbtree_find_it(struct rbtree *, rbtree_node_compare cb);
+struct rbtree_node *rbtree_find_if(struct rbtree *, void *, rbtree_comparator);
+struct rbtree_node *rbtree_find(struct rbtree *, void *);
+struct rbtree_iterator rbtree_find_it(struct rbtree *, rbtree_comparator);
 struct rbtree_iterator rbtree_begin(struct rbtree *);
 struct rbtree_iterator rbtree_end(struct rbtree *);
 int rbtree_next(struct rbtree_iterator *);

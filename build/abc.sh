@@ -4,7 +4,7 @@ project_name="equilibrium"
 out_dir=build/out
 
 usage() {
-	echo "Bad usage: ./build/abc.sh [build|test|clean]"
+	echo "Bad usage: ./build/abc.sh [build|test|clean|format]"
 }
 
 make_build() {
@@ -22,6 +22,10 @@ make_clean() {
 	rm -rf $out_dir
 }
 
+make_format() {
+	./build/apply-format > /dev/null 2>&1
+}
+
 main() {
 	for arg in "$@"
 	do
@@ -29,6 +33,7 @@ main() {
 		    "build") make_build;;
 		    "test") make_test;;
 		    "clean") make_clean;;
+		    "format") make_format;;
 		    *) usage && exit;;
 		esac
 	done
